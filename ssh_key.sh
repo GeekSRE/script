@@ -1,19 +1,19 @@
 #!/bin/bash
 #author=zhy
-#date=2017-12-07
+#date=2018-02-07
 set -e
-SHURL="http://sh.ops.biyao.com/"
-SHURL_DNS=`grep "192.168.99.9 sh.ops.biyao.com" /etc/hosts|wc -l`
-###
-if [ $SHURL_DNS -eq 1 ];then
-    echo "sh.ops.biyao.com   dns (#/etc/hosts#) is ok."
-else
-    echo "### sh.ops.biyao.com dns host" >> /etc/hosts
-    echo "192.168.99.9 sh.ops.biyao.com" >> /etc/hosts
-    echo "sh.ops.biyao.com   dns (#/etc/hosts#) is ok."
-fi
+
 ###add sshkey
-    curl -o /tmp/odc.pub $SHURL/script/ssh_odc.pub
-    mkdir -p /root/.ssh/
-    cat /tmp/odc.pub >> /root/.ssh/authorized_keys
-    chmod 600 /root/.ssh/authorized_keys
+if [ `cat ~/.ssh/authorized_keys |grep 'ops.vcg.com'|wc -l` -ge 1 ];then
+    echo 'ops.vcg.com key is already exists ！'
+    exit 0
+fi
+
+cat > /tmp/vcg.pub <<EOF
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDOrp4iXQWijQuf/k9XlI7ITnJaEFKOKDWgspDVF7oX0joXgOLM2LcSJm+XmtUozWhdnQ62hGQr2CE9whQRDNuFcHf8oDwog3wzbCPY2qQdp8cibFKlch0pIhzTGZJDVbGEa/uhHH+OWfiVCFXRbzPrEr6DHjbUgkdX9YESq84a0d0gtGit/hFjXeqU36RDMCX2JFpA7hYre41kS5xjJjQvkwSaqn21cTi6OPScw+y6L12As8iI8Bn9YzBM12IAyTL86LuHPyIS12vmW5U6CCYkzPnW6gUrRBrK+99rJ4d6M0zyF4zpFRV/YWEp3k20vQZ4yLnBPU1ivSWI0T1IFgfx root@ops.vcg.com
+EOF
+
+mkdir -p /root/.ssh/
+cat /tmp/vcg.pub >> /root/.ssh/authorized_keys
+chmod 600 /root/.ssh/authorized_keys
+echo 'ssh_vcg_key is set ok!'    
