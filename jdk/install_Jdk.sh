@@ -12,7 +12,7 @@ yum install wget -y
 
 mkdir -p $install_Dir
 cd $install_Dir
-wget $SHURL/software/jdk/jdk-8u161-linux-x64.tar.gz
+wget $shUrl/software/jdk/jdk-8u161-linux-x64.tar.gz
 tar zxf jdk-8u161-linux-x64.tar.gz
 
 cat > /etc/profile <<EOF
