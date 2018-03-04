@@ -8,6 +8,8 @@
 set -e
 shUrl="http://sh.ops.ren"
 install_Dir="/data/vcg/"
+yum install wget -y 
+
 mkdir -p $install_Dir
 cd $install_Dir
 wget $SHURL/software/jdk/jdk-8u161-linux-x64.tar.gz
