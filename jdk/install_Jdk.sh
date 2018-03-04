@@ -15,7 +15,7 @@ cd $install_Dir
 wget $shUrl/software/jdk/jdk-8u161-linux-x64.tar.gz
 tar zxf jdk-8u161-linux-x64.tar.gz
 
-cat > /etc/profile <<EOF
+cat >> /etc/profile <<EOF
 ##jdk
 export JAVA_HOME=/data/vcg/jdk1.8.0_161
 export CLASSPATH=.:$JAVA_HOME/jar/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
