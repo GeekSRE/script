@@ -1,0 +1,4 @@
+##查看所有服务名
+curl http://172.16.240.38:8500/v1/catalog/services|python -m json.tool
+##查看单个服务注册信息
+curl http://172.16.240.38:8500/v1/catalog/service|$servicename |python -m json.tool
